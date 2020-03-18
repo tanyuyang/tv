@@ -90,24 +90,6 @@ if has("cscope")
 	endif
 	set csverb
 endif
-" s: Find this C symbol
-nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-" g: Find this definition
-nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-" c: Find functions calling this function
-nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-" t: Find this text string
-nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-" e: Find this egrep pattern
-nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-" f: Find this file
-nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" i: Find files #including this file
-nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-" d: Find functions called by this function
-nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-" a: Find files places where this symbol is assigned a value
-nnoremap <C-\>a :cs find a <C-R>=expand("<cword>")<CR><CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
