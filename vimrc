@@ -1,47 +1,69 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Author:yuyang.tan
+" author : yuyang.tan
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " general
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                   " 使用非兼容模式
-filetype on                        " 打开文件类型侦测
-filetype plugin on                 " 加载基于文件类型的插件
-filetype indent on                 " 加载基于文件类型的缩进
+" 使用非兼容模式
+set nocompatible
 
-set number                         " 显示行号
-set showmode                       " 显示模式
-set showcmd                        " 显示命令
-set ruler                          " 显示光标位置信息
-set laststatus=2                   " 总是显示底部状态栏
-set tabstop=4                      " 制表符的长度为4
-set shiftwidth=4                   " 自动缩进的长度为4
-set ignorecase                     " 搜索时忽略大小写
-set smartcase                      " 搜索时如果搜索模式含大写字母，就不使用忽略大小写选项
-set hlsearch                       " 搜索时高亮显示匹配结果
-set incsearch                      " 搜索时输入搜索模式时就高亮显示匹配结果
-set nowrapscan                     " 搜索时禁止循环搜索
-set hidden                         " 允许在还有修改未保存时离开缓冲区
-set nobackup                       " 不产生备份文件
-set noswapfile                     " 不产生交换文件
-set wildmode=longest,list          " 在命令行中使用Tab键时以Bash shell的方式列出所有的可选项
-set tags=./tags;,tags              " 设定tags文件的路径
+" 加载文件类型侦测
+filetype on
+" 加载基于文件类型的插件
+filetype plugin on
+" 加载基于文件类型的缩进
+filetype indent on
 
-colorscheme molokai                " 使用配色方案
+" 显示行号
+set number
+" 显示模式
+set showmode
+" 显示命令
+set showcmd
+" 显示光标位置信息
+set ruler
+" 总是显示底部状态栏
+set laststatus=2
+" 设置tab键占4个字符长度
+set tabstop=4
+" 设置缩进占4个字符长度
+set shiftwidth=4
+" 搜索时忽略大小写
+set ignorecase
+" 高亮显示搜索匹配结果
+set hlsearch
+" 输入搜索模式时就高亮显示匹配结果
+set incsearch
+" 如果搜索模式含有大写字母，就不使用忽略大小写选项
+set smartcase
+" 重复搜索到达文件两端时，禁止循环搜索
+set nowrapscan
+" 允许在还有修改未保存时离开缓冲区
+set hidden
+" 禁止产生备份文件
+set nobackup
+" 禁止产生交换文件
+set noswapfile
+" 在命令行模式中使用tab键补全时列出所有的可选项
+set wildmode=longest,list
+" 使用配色方案
+colorscheme molokai
+
+" 设置tags文件的路径
+set tags=./tags;,tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin : vim-plug
+" vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " call plug#begin('~/.vim/plugged')
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin : cscope
+" cscope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
 	set csprg=/usr/bin/cscope
@@ -60,7 +82,16 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"    map : change tabs quickly
+" NERETree
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <silent><leader>t :NERDTreeToggle<CR>
+nnoremap <silent><leader>f :NERDTreeFind<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" map : change tabs quickly
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent><leader>n :tabn<CR>
 nnoremap <silent><leader>p :tabp<CR>
@@ -75,14 +106,4 @@ nnoremap <silent><leader>7 :tabn 7<CR>
 nnoremap <silent><leader>8 :tabn 8<CR>
 nnoremap <silent><leader>9 :tabn 9<CR>
 nnoremap <silent><leader>0 :tabn 10<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" plugin : NERETree
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"    map : NERDTree
-nnoremap <silent><leader>t :NERDTreeToggle<CR>
-nnoremap <silent><leader>f :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
