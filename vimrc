@@ -8,6 +8,11 @@
 " 使用非兼容模式
 set nocompatible
 
+" 编码设置
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
 " 加载文件类型侦测
 filetype on
 " 加载基于文件类型的插件
