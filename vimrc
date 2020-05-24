@@ -64,6 +64,8 @@ set tags=./tags;,tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " call plug#begin('~/.vim/plugged')
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+" Plug 'junegunn/fzf.vim'
 " call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
