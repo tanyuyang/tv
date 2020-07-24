@@ -2,6 +2,7 @@
 " OS : LINUX
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " general
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -59,16 +60,22 @@ colorscheme molokai
 set tags=./tags;,tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " call plug#begin('~/.vim/plugged')
+"
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'ludovicchabant/vim-gutentags'
+"
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " Plug 'junegunn/fzf.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"
 " call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope
@@ -89,6 +96,31 @@ if has("cscope")
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gutentags
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.git', '.svn', '.root', '.project']
+
+" 所生成的数据文件的尾巴，文件名 = tags文件的工程绝对路径 + gutentags_ctags_tagfile
+let g:gutentags_ctags_tagfile = 'tags'
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERETree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -99,6 +131,7 @@ let g:NERDTreeWinPos='right'
 nnoremap <silent><leader>t :NERDTreeToggle<CR>
 nnoremap <silent><leader>f :NERDTreeFind<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map : change tabs quickly
@@ -117,6 +150,7 @@ nnoremap <silent><leader>8 :tabn 8<CR>
 nnoremap <silent><leader>9 :tabn 9<CR>
 nnoremap <silent><leader>0 :tabn 10<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map : change windows quickly
