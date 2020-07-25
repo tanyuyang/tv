@@ -68,10 +68,12 @@ set tags=./tags;,tags
 "
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'ludovicchabant/vim-gutentags'
+" Plug 'majutsushi/tagbar'
 "
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " Plug 'junegunn/fzf.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "
 " call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -122,15 +124,27 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERETree
+" NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 目录树显示在右边
+" 右边显示
 let g:NERDTreeWinPos='right'
-nnoremap <silent><leader>t :NERDTreeToggle<CR>
-nnoremap <silent><leader>f :NERDTreeFind<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" tagbar
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent><F8> :TagbarToggle<CR>
+" tagbar 依赖 ctags 程序
+let g:tagbar_ctags_bin='ctags'
+" 左边显示，默认右边
+let g:tagbar_left=1
+" 打开 tagbar 时，光标定在 tagbar 窗口内
+let g:tagbar_autofocus=1
+" 设置不排序，默认排序
+let g:tagbar_sort=0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
