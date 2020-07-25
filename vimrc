@@ -128,9 +128,9 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+nnoremap <F9> :NERDTreeToggle<CR>
 " 右边显示
 let g:NERDTreeWinPos='right'
-nnoremap <C-n> :NERDTreeToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -145,6 +145,8 @@ let g:tagbar_left=1
 let g:tagbar_autofocus=1
 " 设置不排序，默认排序
 let g:tagbar_sort=0
+" 设置窗口宽度为30，默认40
+let g:tagbar_width=30
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
