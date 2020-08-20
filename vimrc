@@ -68,12 +68,11 @@ set tags=./tags;,tags
 "
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'ludovicchabant/vim-gutentags'
-" Plug 'majutsushi/tagbar'
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " Plug 'junegunn/fzf.vim'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "
 " call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -133,38 +132,24 @@ nnoremap <F9> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos='right'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" tagbar
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent><F8> :TagbarToggle<CR>
-" tagbar 依赖 ctags 程序
-let g:tagbar_ctags_bin='ctags'
-" 左边显示，默认右边
-let g:tagbar_left=1
-" 打开 tagbar 时，光标定在 tagbar 窗口内
-let g:tagbar_autofocus=1
-" 设置不排序，默认排序
-let g:tagbar_sort=0
-" 设置窗口宽度为30，默认40
-let g:tagbar_width=30
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " map : change tabs quickly
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent><leader>n :tabn<CR>
-nnoremap <silent><leader>p :tabp<CR>
-nnoremap <silent><leader>c :tabclose<CR>
-nnoremap <silent><leader>1 :tabn 1<CR>
-nnoremap <silent><leader>2 :tabn 2<CR>
-nnoremap <silent><leader>3 :tabn 3<CR>
-nnoremap <silent><leader>4 :tabn 4<CR>
-nnoremap <silent><leader>5 :tabn 5<CR>
-nnoremap <silent><leader>6 :tabn 6<CR>
-nnoremap <silent><leader>7 :tabn 7<CR>
-nnoremap <silent><leader>8 :tabn 8<CR>
-nnoremap <silent><leader>9 :tabn 9<CR>
-nnoremap <silent><leader>0 :tabn 10<CR>
+nnoremap <silent><tab>n :tabn<CR>
+nnoremap <silent><tab>p :tabp<CR>
+nnoremap <silent><tab>m :tabnew<CR>
+nnoremap <silent><tab>c :tabclose<CR>
+nnoremap <silent><tab>1 :tabn 1<CR>
+nnoremap <silent><tab>2 :tabn 2<CR>
+nnoremap <silent><tab>3 :tabn 3<CR>
+nnoremap <silent><tab>4 :tabn 4<CR>
+nnoremap <silent><tab>5 :tabn 5<CR>
+nnoremap <silent><tab>6 :tabn 6<CR>
+nnoremap <silent><tab>7 :tabn 7<CR>
+nnoremap <silent><tab>8 :tabn 8<CR>
+nnoremap <silent><tab>9 :tabn 9<CR>
+nnoremap <silent><tab>0 :tabn 10<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
