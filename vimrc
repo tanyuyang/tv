@@ -69,6 +69,7 @@ set tags=./tags;,tags
 " Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" Plug 'tpope/vim-surround'
 "
 " Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " Plug 'junegunn/fzf.vim'
@@ -138,22 +139,30 @@ let g:NERDTreeWinPos='right'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 普通模式隐射 : 快速切换标签页
+" LeaderF
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent><tab>n :tabn<CR>
-nnoremap <silent><tab>p :tabp<CR>
-nnoremap <silent><tab>m :tabnew<CR>
-nnoremap <silent><tab>c :tabclose<CR>
-nnoremap <silent><tab>1 :tabn 1<CR>
-nnoremap <silent><tab>2 :tabn 2<CR>
-nnoremap <silent><tab>3 :tabn 3<CR>
-nnoremap <silent><tab>4 :tabn 4<CR>
-nnoremap <silent><tab>5 :tabn 5<CR>
-nnoremap <silent><tab>6 :tabn 6<CR>
-nnoremap <silent><tab>7 :tabn 7<CR>
-nnoremap <silent><tab>8 :tabn 8<CR>
-nnoremap <silent><tab>9 :tabn 9<CR>
-nnoremap <silent><tab>0 :tabn 10<CR>
+" <leader>f	默认占用，搜索文件
+" <leader>b	默认占用，搜索当前buffer
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 普通模式映射 : 快速切换标签页
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent><leader>n :tabn<CR>
+nnoremap <silent><leader>p :tabp<CR>
+nnoremap <silent><leader>m :tabnew<CR>
+nnoremap <silent><leader>c :tabclose<CR>
+nnoremap <silent><leader>1 :tabn 1<CR>
+nnoremap <silent><leader>2 :tabn 2<CR>
+nnoremap <silent><leader>3 :tabn 3<CR>
+nnoremap <silent><leader>4 :tabn 4<CR>
+nnoremap <silent><leader>5 :tabn 5<CR>
+nnoremap <silent><leader>6 :tabn 6<CR>
+nnoremap <silent><leader>7 :tabn 7<CR>
+nnoremap <silent><leader>8 :tabn 8<CR>
+nnoremap <silent><leader>9 :tabn 9<CR>
+nnoremap <silent><leader>0 :tabn 10<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
