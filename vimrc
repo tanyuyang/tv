@@ -1,5 +1,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" OS : LINUX
+" Environment : LINUX
+" VIM Version : VIM 8.0
+" My Name     : TYY
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -53,6 +55,7 @@ set nobackup
 set noswapfile
 " 在命令行模式中使用tab键补全时列出所有的可选项
 set wildmode=longest,list
+
 " 使用配色方案
 colorscheme molokai
 
@@ -66,14 +69,17 @@ set tags=./tags;,tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " call plug#begin('~/.vim/plugged')
 "
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'ludovicchabant/vim-gutentags'
-" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+" 定义插件，默认用法
 " Plug 'tpope/vim-surround'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'skywind3000/vim-auto-popmenu'
+" Plug 'skywind3000/vim-dict'
 "
-" Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-" Plug 'junegunn/fzf.vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" 延迟按需加载，使用到命令时或打开对应文件类型时才加载
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"
+" 设置插件更新后的钩子
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "
 " call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -82,7 +88,7 @@ set tags=./tags;,tags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 以下设置来自于vim内置文档的推荐设置，参照:h cscope
+" 以下设置来自于vim内置文档的推荐设置，执行:h cscope查阅
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("cscope")
 	set csprg=/usr/bin/cscope
@@ -107,7 +113,8 @@ endif
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.git', '.svn', '.root', '.project']
 
-" 所生成的数据文件的尾巴，文件名 = tags文件的工程绝对路径 + gutentags_ctags_tagfile
+" 所生成的数据文件的文件名
+" 文件名 = tags文件的工程绝对路径 + $(gutentags_ctags_tagfile)
 let g:gutentags_ctags_tagfile = 'tags'
 
 " 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
@@ -126,16 +133,34 @@ endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-auto-popmenu
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 设定需要生效的文件类型，如果是“*”的话，代表所有类型
+let g:apc_enable_ft={'*':1}
+" 设定从字典文件以及当前打开的文件里收集补全单词，详情看':h cpt'
+set cpt=.,k,w,b
+" 不要自动选中第一个选项
+set completeopt=menu,menuone,noselect
+" 禁止在下方显示一些啰嗦的提示
+set shortmess+=c
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 如果唯一一个打开的窗口是NERDTree窗口，就关闭vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" 普通模式映射 : F9 = 打开NERDTree窗口
+" F9 = 打开NERDTree窗口
 nnoremap <F9> :NERDTreeToggle<CR>
-" 普通模式映射 : F10 = 定位当前活动缓冲区
+inoremap <F9> <ESC>:NERDTreeToggle<CR>
+" F10 = 定位当前活动缓冲区
 nnoremap <F10> :NERDTreeFind<CR>
+inoremap <F10> <ESC>:NERDTreeFind<CR>
 " 右边显示
 let g:NERDTreeWinPos='right'
+" 忽略以下文件的显示
+let g:NERDTreeIgnore=['\.swp','\.o','\.bin','\.img']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -147,12 +172,14 @@ let g:NERDTreeWinPos='right'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 普通模式映射 : 快速切换标签页
+" 快速切换标签页
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent><leader>n :tabn<CR>
-nnoremap <silent><leader>p :tabp<CR>
-nnoremap <silent><leader>m :tabnew<CR>
-nnoremap <silent><leader>c :tabclose<CR>
+nnoremap <silent><tab>m :tabnew<CR>
+nnoremap <silent><tab>e :tabclose<CR>
+nnoremap <silent><tab>n :tabn<CR>
+nnoremap <silent><tab>p :tabp<CR>
+nnoremap <silent><leader>t :tabnew<CR>
+nnoremap <silent><leader>g :tabclose<CR>
 nnoremap <silent><leader>1 :tabn 1<CR>
 nnoremap <silent><leader>2 :tabn 2<CR>
 nnoremap <silent><leader>3 :tabn 3<CR>
@@ -163,18 +190,26 @@ nnoremap <silent><leader>7 :tabn 7<CR>
 nnoremap <silent><leader>8 :tabn 8<CR>
 nnoremap <silent><leader>9 :tabn 9<CR>
 nnoremap <silent><leader>0 :tabn 10<CR>
+nnoremap <silent><s-tab> :tabnext<CR>
+inoremap <silent><s-tab> <ESC>:tabnext<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 普通模式映射 : 快速切换窗口
+" 快速切换窗口
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+inoremap <C-h> <ESC><C-w>h
+inoremap <C-j> <ESC><C-w>j
+inoremap <C-k> <ESC><C-w>k
+inoremap <C-l> <ESC><C-w>l
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 命令行模式映射 : 按%%时自动展开为当前活动缓冲区的路径
+" 其它映射
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 底行模式下，输入%%时自动展开为当前活动缓冲区的路径
 cnoremap <expr> %% getcmdtype( ) == ':' ? expand('%:h').'/' : '%%'
